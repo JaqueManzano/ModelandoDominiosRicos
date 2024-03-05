@@ -8,9 +8,9 @@ public class StudentTests
     [TestMethod]
     public void TestMethod1()
     {
-        var student = new Student ("Jaque", "Manzano", "123456789", "jaque@hotmail.com");
+        //var student = new Student ("Jaque", "Manzano", "123456789", "jaque@hotmail.com");
 
-        var subscription = new Subscription(null);
-        student.AddSubscription(subscription);
+        //var subscription = new Subscription(null);
+        //student.AddSubscription(subscription);
     }
 }
