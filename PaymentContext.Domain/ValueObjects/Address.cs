@@ -1,4 +1,6 @@
-﻿using PaymentContext.Shared.ValueObjects;
+﻿using Flunt.Notifications;
+using Flunt.Validations;
+using PaymentContext.Shared.ValueObjects;
 
 namespace PaymentContext.Domain.ValueObjects
 {
@@ -13,6 +15,11 @@ namespace PaymentContext.Domain.ValueObjects
             State = state;
             Country = country;
             ZipCode = zipCode;
+
+            AddNotifications(new Contract<Notification>()
+                        .Requires()
+                        .IsNullOrEmpty(Street, "Address.Street", "Street inválido")
+                        .IsNullOrEmpty(Number, "Address.Number", "Number inválido"));
         }
 
         public string Street { get; private set; } = string.Empty;

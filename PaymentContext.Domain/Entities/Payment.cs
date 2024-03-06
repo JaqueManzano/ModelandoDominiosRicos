@@ -1,10 +1,14 @@
+using Flunt.Notifications;
+using Flunt.Validations;
 using PaymentContext.Domain.ValueObjects;
+using PaymentContext.Shared.Entities;
+using System.Diagnostics.Contracts;
 
 namespace PaymentContext.Domain.Entities
 {
     // Não é possível instânciar um Payment direto ... O pagamento sempre será com boleto, cartão de crédito ou PayPal
 
-    public abstract class Payment
+    public abstract class Payment : Entity
     {
         public Payment(DateTime paidDate, DateTime expireDate, decimal total, decimal totalPaid, string payer, Document document, Address address, Email email)
         {
@@ -17,6 +21,12 @@ namespace PaymentContext.Domain.Entities
             Document = document;
             Address = address;
             Email = email;
+
+            AddNotifications(new Contract<Notification>()
+                .Requires()
+                .IsGreaterThan(0, Total, "Payment.Total", "O total não pode ser zero.")
+                .IsGreaterOrEqualsThan(Total, TotalPaid, "Payment.TotalPaid", "O valor pago é menor que o valor do pagamento.")
+                );
         }
 
         public string Number { get; private set; } = string.Empty;
