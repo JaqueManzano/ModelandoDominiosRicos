@@ -11,8 +11,8 @@ namespace PaymentContext.Domain.Commands
         public string LastName { get; set; } = string.Empty;
         public string Document { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public string BarCode { get; private set; } = string.Empty;
-        public string BoletoNumber { get; private set; } = string.Empty;
+        public string BarCode { get; set; } = string.Empty;
+        public string BoletoNumber { get; set; } = string.Empty;
         public string PaymentNumber { get; set; } = string.Empty;
         public DateTime PaidDate { get; set; }
         public DateTime ExpireDate { get; set; }
