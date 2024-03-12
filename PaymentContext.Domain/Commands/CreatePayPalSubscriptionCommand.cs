@@ -1,9 +1,11 @@
-﻿using PaymentContext.Domain.Enums;
+﻿using Flunt.Notifications;
+using PaymentContext.Domain.Enums;
 using PaymentContext.Domain.ValueObjects;
+using PaymentContext.Shared.Commands;
 
 namespace PaymentContext.Domain.Commands
 {
-    public class CreatePayPalSubscriptionCommand
+    public class CreatePayPalSubscriptionCommand : Notifiable<Notification>, ICommand
     {
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
@@ -25,6 +27,11 @@ namespace PaymentContext.Domain.Commands
         public string City { get; set; } = string.Empty;
         public string State { get; set; } = string.Empty;
         public string Country { get; set; } = string.Empty;
-        public string ZipCode { get; set; } = string.Empty; 
+        public string ZipCode { get; set; } = string.Empty;
+
+        public void Validate()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
